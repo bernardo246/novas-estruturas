@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #050505;
+  --bg-secondary: #0A0E1A;
+  --card: #10141F;
+  --border-soft: #22262F;
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8BCC4;
+  --brand-yellow: #F5B700;
+  --brand-navy: #14213D;
+
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Design tokens helpers */
+.bg-secondary { background-color: var(--bg-secondary); }
+.text-secondary { color: var(--text-secondary); }
+.border-soft { border-color: var(--border-soft); }
+
+/* Glassmorphism card (reutilizável) */
+.glass-card {
+  border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  color: var(--text-primary);
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  background: transparent;
+  transition: background 500ms ease, border-bottom 500ms ease, backdrop-filter 500ms ease;
+}
+
+.navbar.scrolled {
+  background: rgba(5,5,5,0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.navbar a {
+  color: var(--text-primary);
+  transition: color 200ms ease;
+}
+
+.navbar a:hover, .navbar a.active {
+  color: var(--brand-yellow);
+}
+
+/* Hero background gradients */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(245,183,0,0.10), transparent 30%),
+    radial-gradient(circle at 80% 70%, rgba(20,33,61,0.25), transparent 35%);
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--brand-yellow);
+  color: var(--bg);
+  border-radius: 12px;
+  padding: 0.6rem 1rem;
+  font-weight: 700;
+  transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-4px);
+  filter: brightness(1.02);
+  box-shadow: 0 8px 24px rgba(245,183,0,0.08);
+}
+
+.btn-secondary {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  padding: 0.5rem 0.9rem;
+  border-radius: 10px;
+  transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-yellow);
+  color: var(--brand-yellow);
+  transform: translateY(-3px);
+}
+
+/* Services / Cards */
+.service-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-soft);
+  transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+}
+
+.service-card:hover {
+  border-color: var(--brand-yellow);
+  transform: translateY(-6px);
+  box-shadow: 0 12px 40px rgba(245,183,0,0.04), 0 6px 20px rgba(20,33,61,0.06);
+}
+
+/* Projects hover */
+.project-item:hover {
+  transform: scale(1.03);
+}
+
+/* Impact section */
+.impact-hero {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-primary);
+}
+.impact-hero .headline {
+  font-size: clamp(2.25rem, 6vw, 6rem);
+  font-weight: 800;
+  line-height: 0.95;
+  text-shadow: 0 8px 30px rgba(20,33,61,0.6), 0 2px 6px rgba(245,183,0,0.06);
+}
+
+/* Scroll reveal helper */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax helper */
+.parallax { will-change: transform; }
+
+/* Contact card note: visual only - no storage */
+.contact-card { max-width: 720px; margin: 0 auto; }
+
+/* Footer */
+.footer { background: var(--bg); border-top: 1px solid var(--border-soft); }
+
+/* Respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
