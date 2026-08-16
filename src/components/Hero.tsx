@@ -34,6 +34,8 @@ export default function Hero(){
             alt="Estrutura para evento montada pela Novas Estruturas"
             fill
             priority
+            loading="eager"
+            sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
           />
           <div className="absolute inset-0" style={{background: 'linear-gradient(180deg, rgba(5,5,5,0.35), transparent)'}} />

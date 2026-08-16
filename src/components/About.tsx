@@ -41,18 +41,32 @@ export default function About(){
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.45 }}
-            className="relative h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-yellow)]/40"
+            className="h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-yellow)]/40"
           >
-            <Image src="/images/5.jpg" alt="Montagem de estrutura para evento" fill className="object-cover" />
+            <Image
+              src="/images/5.jpg"
+              alt="Montagem de estrutura para evento"
+              width={640}
+              height={448}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 30vw, 25vw"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.45, delay: 0.1 }}
-            className="relative h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-navy)]/40"
+            className="h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-navy)]/40"
           >
-            <Image src="/images/7.png" alt="Detalhe estrutural de cobertura para evento" fill className="object-cover" />
+            <Image
+              src="/images/7.png"
+              alt="Detalhe estrutural de cobertura para evento"
+              width={640}
+              height={448}
+              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 30vw, 25vw"
+              className="w-full h-full object-cover"
+            />
           </motion.div>
         </motion.div>
       </div>
