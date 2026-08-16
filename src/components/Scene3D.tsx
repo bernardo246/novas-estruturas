@@ -1,7 +1,7 @@
 'use client'
 
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float } from '@react-three/drei'
+import { Float, Sparkles } from '@react-three/drei'
 import { useEffect, useRef, useState } from 'react'
 import type { Group } from 'three'
 
@@ -70,6 +70,9 @@ export default function Scene3D(){
       {/* subtle cool fill */}
       <directionalLight position={[-3, -2, -2]} intensity={0.35} color={'#0A2340'} />
       <RotatingStructure />
+      {/* small ambient particles — kept subtle so the piece reads as architecture, not a game */}
+      <Sparkles count={18} scale={2.6} size={1.4} speed={0.15} opacity={0.4} color={'#F5B700'} />
+      <Sparkles count={10} scale={3} size={1.1} speed={0.08} opacity={0.25} color={'#14213D'} />
     </Canvas>
   )
 }

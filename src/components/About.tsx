@@ -21,13 +21,15 @@ export default function About(){
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-3xl font-bold text-[var(--brand-blue)]">Sobre</h2>
-          <p className="mt-4 text-gray-700 leading-relaxed">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[var(--text-primary)]">
+            SOBRE A<br />NOVAS ESTRUTURAS
+          </h2>
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
             A Novas Estruturas atua na montagem de estruturas para eventos com foco em segurança,
             acabamento e execução eficiente. Nossa equipe entrega soluções para projetos de diferentes
             portes, sempre com planejamento técnico e atenção ao detalhe.
           </p>
-          <p className="mt-4 text-gray-700 leading-relaxed">
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed">
             Trabalhamos com estruturas para shows, eventos corporativos, feiras e ações especiais,
             adaptando cada montagem ao perfil da operação e da experiência desejada.
           </p>
@@ -48,7 +50,7 @@ export default function About(){
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.45, delay: 0.1 }}
-            className="relative h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-blue)]/20"
+            className="relative h-44 sm:h-56 rounded-xl overflow-hidden shadow-lg ring-2 ring-[var(--brand-navy)]/40"
           >
             <Image src="/images/7.png" alt="Detalhe estrutural de cobertura para evento" fill className="object-cover" />
           </motion.div>

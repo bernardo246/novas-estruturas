@@ -127,8 +127,57 @@ body {
 }
 
 /* Projects hover */
+.project-item {
+  border: 1px solid transparent;
+  transition: transform 350ms ease, border-color 350ms ease, box-shadow 350ms ease;
+}
+
 .project-item:hover {
   transform: scale(1.03);
+  border-color: var(--brand-yellow);
+  box-shadow: 0 16px 48px rgba(245, 183, 0, 0.08), 0 8px 24px rgba(20, 33, 61, 0.2);
+}
+
+.project-item .project-arrow {
+  transform: translate(-4px, 4px);
+  opacity: 0;
+  transition: transform 300ms ease, opacity 300ms ease;
+}
+
+.project-item:hover .project-arrow {
+  transform: translate(0, 0);
+  opacity: 1;
+}
+
+/* Service card arrow + navy halo behind the yellow glow */
+.service-card {
+  position: relative;
+}
+
+.service-card::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(120px 80px at 20% 0%, rgba(20, 33, 61, 0.35), transparent 70%);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.service-card:hover::before {
+  opacity: 1;
+}
+
+.service-arrow {
+  transform: translateX(0);
+  transition: transform 250ms ease, color 250ms ease;
+}
+
+.service-card:hover .service-arrow {
+  transform: translateX(6px);
+  color: var(--brand-yellow);
 }
 
 /* Impact section */
@@ -162,7 +211,17 @@ body {
 .parallax { will-change: transform; }
 
 /* Contact card note: visual only - no storage */
-.contact-card { max-width: 720px; margin: 0 auto; }
+.contact-card {
+  max-width: 760px;
+  margin: 0 auto;
+  border: 1px solid var(--border-soft);
+  transition: border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.contact-card:hover {
+  border-color: rgba(245, 183, 0, 0.4);
+  box-shadow: 0 20px 60px rgba(20, 33, 61, 0.35);
+}
 
 /* Footer */
 .footer { background: var(--bg); border-top: 1px solid var(--border-soft); }

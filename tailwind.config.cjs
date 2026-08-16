@@ -7,9 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        accent: 'var(--accent)',
-        brand: 'var(--brand-blue)',
-        ink: 'var(--brand-black)'
+        bg: 'var(--bg)',
+        'bg-secondary': 'var(--bg-secondary)',
+        card: 'var(--card)',
+        'border-soft': 'var(--border-soft)',
+        'text-primary': 'var(--text-primary)',
+        'text-secondary': 'var(--text-secondary)',
+        'brand-yellow': 'var(--brand-yellow)',
+        'brand-navy': 'var(--brand-navy)'
       }
     }
   },

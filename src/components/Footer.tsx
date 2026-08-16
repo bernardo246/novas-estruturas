@@ -1,6 +1,6 @@
 export default function Footer(){
   return (
-    <footer className="py-10 bg-[var(--brand-black)] text-white border-t border-[var(--brand-yellow)]/40">
+    <footer className="footer py-10 text-[var(--text-primary)]">
       <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-3 gap-6">
         <div>
           <div className="font-bold text-[var(--brand-yellow)]">Novas Estruturas</div>
