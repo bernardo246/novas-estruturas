@@ -356,15 +356,6 @@ Tipo de evento
 Mensagem
 ```
 
-Botão:
-
-```text
-Solicitar orçamento
-```
-
-### Importante
-
-O formulário **não deve armazenar nenhuma informação**.
 
 Não criar:
 
@@ -377,18 +368,7 @@ cadastro
 painel
 ```
 
-Se não houver um serviço externo definido para envio, o formulário pode permanecer como interface visual com uma ação preparada para integração futura.
 
-Adicionar também espaços para:
-
-```text
-WhatsApp
-E-mail
-Instagram
-Telefone
-```
-
-Utilizar placeholders enquanto os dados reais não forem fornecidos.
 
 ---
 
@@ -432,7 +412,7 @@ Garantir que o 3D não cause problemas em telas pequenas.
 # 18. Performance
 
 Priorizar:
-
+- deixar as imagens corretamente dimencionadas ao espaço alocado a ela
 - imagens otimizadas;
 - lazy loading;
 - componentes leves;
