@@ -47,7 +47,7 @@ export default function Navbar() {
         >
           <span className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-border-soft">
             <Image
-              src="/images/logo-novas-estruturas.jpg"
+              src="/images/servicos-montagem-arco-dia.png"
               alt="Logo Novas Estruturas"
               fill
               sizes="32px"

@@ -12,10 +12,10 @@ const EVENT_TYPES = [
 ];
 
 const CHANNELS = [
-  { label: "WhatsApp", value: "(81) 99999-0000", icon: IconWhatsapp },
+  { label: "WhatsApp", value: "+55 81 97326-3734", icon: IconWhatsapp },
   { label: "E-mail", value: "contato@novasestruturas.com.br", icon: IconMail },
   { label: "Instagram", value: "@novasestruturas", icon: IconInstagram },
-  { label: "Telefone", value: "(81) 3333-0000", icon: IconPhone },
+  { label: "Telefone", value: "+55 81 97326-3734", icon: IconPhone },
 ];
 
 export default function Contact() {
