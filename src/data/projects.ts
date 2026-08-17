@@ -75,3 +75,17 @@ export const projects: Project[] = [
     image: "/images/projeto-arco-branded-noite.jpg",
   },
 ];
+
+export const contactLinks = [
+  {
+  label: "Email",
+  href: "mailto:novasestruturasltda@gmail.com",
+  value: "novasestruturasltda@gmail.com",
+  },
+  {
+    label: "WhatsApp",
+    href: "https://wa.me/5581973263734",
+    value: "Conversar no WhatsApp"
+  },
+  { label: "Telefone", href: "tel:+55(81) 97326-3734", value: "+55 81 97326-3734" }
+];

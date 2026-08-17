@@ -1,3 +1,35 @@
+
+"use client";
+
+import { contactLinks } from "@/data/projects";
+
+export default function Contact() {
+  return (
+    <section id="contato" className="section-container">
+      <h2 className="section-title">Entre em contato para realizar o orçamento</h2>
+      <p className="mt-6 max-w-3xl text-lg text-textSecondary">
+        Estruturas que transformam eventos em experiências.
+      </p>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {contactLinks.map((item) => (
+          <a
+            key={item.label}
+            href={item.href}
+            aria-label={item.label}
+            target={item.href.startsWith("http") ? "_blank" : undefined}
+            rel="noreferrer"
+            className="focus-ring rounded-xl border border-borderSoft bg-card p-5 text-lg font-semibold transition hover:border-brand hover:shadow-glow"
+          >
+            {item.label}
+          </a>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+
+/*
 "use client";
 
 import { motion } from "framer-motion";
@@ -208,3 +240,4 @@ function IconPhone(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+*/ // PARA POSSIVEL FEATURE A SER IMPLEMENTADA

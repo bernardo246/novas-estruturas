@@ -62,9 +62,9 @@ export default function Footer() {
           </p>
           <ul className="mt-4 space-y-2.5">
             <li className="text-sm text-text-secondary">
-              contato@novasestruturas.com.br
+              novasestruturasltda@gmail.com
             </li>
-            <li className="text-sm text-text-secondary">(81) 99999-0000</li>
+            <li className="text-sm text-text-secondary">+55 81 97326-3734</li>
             {SOCIAL_LINKS.map((social) => (
               <li key={social.label}>
                 <a
