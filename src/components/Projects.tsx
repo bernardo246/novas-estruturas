@@ -1,55 +1,79 @@
-'use client'
+"use client";
 
-import { projects } from '@/data/projects'
-import { motion } from 'framer-motion'
-import Image from 'next/image'
-import { useScrollReveal } from '@/hooks/useScrollReveal'
+import Image from "next/image";
+import { motion } from "framer-motion";
+import { projects } from "@/data/projects";
 
-export default function Projects(){
-  const headingRef = useScrollReveal<HTMLHeadingElement>()
+const SPAN_CLASSES: Record<string, string> = {
+  wide: "sm:col-span-2 aspect-[16/9]",
+  tall: "sm:row-span-2 aspect-[3/4] sm:aspect-auto sm:h-full",
+  normal: "aspect-[4/3]",
+};
 
+export default function Projects() {
   return (
-    <section id="projects" className="py-20">
-      <div className="max-w-6xl mx-auto px-5">
-        <h2 ref={headingRef} className="reveal text-3xl md:text-4xl font-extrabold text-[var(--text-primary)]">
-          Projetos
-        </h2>
-        <p className="mt-3 text-[var(--text-secondary)]">
-          Portfólio com imagens reais de montagens executadas pela Novas Estruturas.
-        </p>
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[280px]">
-          {projects.map((p, i) => (
-            <motion.article
-              key={p.id}
-              initial={{ opacity: 0, y: 12 }}
+    <section id="projetos" className="relative bg-bg-secondary">
+      <div className="section-container">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="max-w-2xl"
+        >
+          <p className="font-mono text-xs uppercase tracking-[0.25em] text-brand-light">
+            Portfólio
+          </p>
+          <h2 className="section-title text-balance mt-4 text-white">
+            Projetos
+          </h2>
+          <p className="mt-4 text-base leading-relaxed text-text-secondary">
+            Estruturas reais, em operação — projetadas, montadas e
+            acompanhadas pela nossa equipe do início ao fim do evento.
+          </p>
+        </motion.div>
+
+        <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <motion.div
+              key={project.id}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ delay: i * 0.04, duration: 0.35 }}
-              className={`project-item group relative overflow-hidden rounded-xl shadow ${i % 5 === 0 ? 'md:col-span-2 lg:col-span-2' : ''}`}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
+              className={`glass-card group relative overflow-hidden rounded-2xl ${
+                SPAN_CLASSES[project.span ?? "normal"]
+              }`}
             >
               <Image
-                src={p.image}
+                src={project.image}
+                alt={project.title}
                 fill
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                loading="lazy"
-                alt={p.title}
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
               />
-              <div className="absolute inset-0 flex items-end p-4 bg-gradient-to-t from-[var(--bg)]/90 via-[var(--brand-navy)]/40 to-transparent opacity-95 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
-                <div className="text-[var(--text-primary)] flex items-end justify-between w-full gap-3">
-                  <div>
-                    <strong>{p.title}</strong>
-                    <div className="text-xs mt-1 text-[var(--text-secondary)]">{p.description}</div>
-                  </div>
-                  <span className="project-arrow shrink-0 text-[var(--brand-yellow)] text-xl" aria-hidden>
-                    →
-                  </span>
-                </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+              <div className="absolute inset-x-0 bottom-0 translate-y-3 p-5 transition-transform duration-400 ease-out group-hover:translate-y-0">
+                <span className="font-mono text-[10px] uppercase tracking-wider text-brand-light">
+                  {project.category}
+                </span>
+                <h3 className="mt-1 font-display text-lg font-semibold text-white">
+                  {project.title}
+                </h3>
+                <p className="mt-1 text-xs text-text-secondary opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {project.description}
+                </p>
+                <span className="mt-2 block text-[11px] text-text-secondary">
+                  {project.location}
+                </span>
               </div>
-            </motion.article>
+
+              <div className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 shadow-glow transition-opacity duration-300 group-hover:opacity-100" />
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }

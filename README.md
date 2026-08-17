@@ -1,24 +1,57 @@
-Novas Estruturas — Scaffold inicial
+# Novas Estruturas — Site Institucional
 
-Arquitetura mínima criada a partir das especificações fornecidas.
+Site institucional estático em Next.js/React/TypeScript para a Novas
+Estruturas, empresa especializada em montagem de estruturas para eventos.
 
-Próximos passos recomendados:
+## Stack
 
-1. Entrar na pasta do projeto:
-   cd novas-estruturas
+- Next.js 16 (App Router, geração estática)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- Three.js + React Three Fiber + Drei (`Scene3D.tsx`)
+- Framer Motion (animações de scroll e tilt 3D)
+- Fontes self-hosted via `@fontsource` (Space Grotesk, Inter, JetBrains Mono)
 
-2. Instalar dependências principais e 3D/Animações sugeridas:
-   npm install
-   npm install three @react-three/fiber @react-three/drei framer-motion
-   (já instalado: three, @react-three/fiber, @react-three/drei, framer-motion, @types/three)
-   npm install -D @types/three tailwindcss postcss autoprefixer eslint
+## Rodar localmente
 
-3. Inicializar Tailwind (se ainda não):
-   npx tailwindcss init -p  # já existe tailwind.config.cjs e postcss.config.cjs no scaffold
+```bash
+npm install
+npm run dev
+```
 
-4. Ajustar package.json versões e configurar aliases se quiser (ex.: tsconfig "paths").
+Abra http://localhost:3000
 
-5. Executar em dev:
-   npm run dev
+## Build de produção
 
-OBS: O diretório public/images já existe e deve conter as imagens reais do cliente. Não incluir armazenamento/BD no projeto.
+```bash
+npm run lint
+npm run build
+npm run start
+```
+
+## Estrutura
+
+```text
+src/
+├── app/
+│   ├── layout.tsx      # metadata, SEO, JSON-LD, fontes
+│   ├── page.tsx        # composição das seções
+│   └── globals.css     # tokens de design (azul-marinho + preto)
+├── components/
+│   ├── Navbar.tsx
+│   ├── Hero.tsx         # tilt 3D reativo ao mouse + Scene3D
+│   ├── About.tsx
+│   ├── Services.tsx
+│   ├── Projects.tsx
+│   ├── Scene3D.tsx      # estrutura metálica em Three.js/R3F
+│   ├── Contact.tsx      # formulário 100% visual, sem armazenamento
+│   └── Footer.tsx
+└── data/
+    └── projects.ts      # portfólio estático (sem CMS)
+public/images/            # imagens reais fornecidas pelo cliente
+```
+
+## Paleta de cores
+
+Azul-marinho + preto (`--bg`, `--brand`, `--brand-light`, `--brand-glow`),
+sem verde, laranja ou dourado como acento — conforme especificação v2.

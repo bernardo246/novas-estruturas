@@ -1,33 +1,92 @@
-export default function Footer(){
+import Image from "next/image";
+
+const SECTION_LINKS = [
+  { href: "#sobre", label: "Sobre" },
+  { href: "#servicos", label: "Serviços" },
+  { href: "#projetos", label: "Projetos" },
+  { href: "#contato", label: "Contato" },
+];
+
+const SOCIAL_LINKS = [
+  { label: "Instagram", href: "https://instagram.com" },
+  { label: "WhatsApp", href: "https://wa.me/5581999990000" },
+  { label: "LinkedIn", href: "https://linkedin.com" },
+];
+
+export default function Footer() {
   return (
-    <footer className="footer py-10 text-[var(--text-primary)]">
-      <div className="max-w-6xl mx-auto px-5 grid md:grid-cols-3 gap-6">
+    <footer className="border-t border-border-soft bg-bg-secondary">
+      <div className="section-container grid grid-cols-1 gap-10 !py-14 sm:grid-cols-3">
         <div>
-          <div className="font-bold text-[var(--brand-yellow)]">Novas Estruturas</div>
-          <p className="text-sm text-white/75 mt-2">Soluções profissionais em estruturas e montagem para eventos.</p>
-        </div>
-        <div className="text-sm">
-          <div className="font-semibold mb-2 text-[var(--brand-yellow)]">Seções</div>
-          <div className="flex flex-col gap-1">
-            <a href="#about" className="hover:text-[var(--brand-yellow)] transition">Sobre</a>
-            <a href="#services" className="hover:text-[var(--brand-yellow)] transition">Serviços</a>
-            <a href="#projects" className="hover:text-[var(--brand-yellow)] transition">Projetos</a>
-            <a href="#contact" className="hover:text-[var(--brand-yellow)] transition">Contato</a>
+          <div className="flex items-center gap-2.5">
+            <span className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-border-soft">
+              <Image
+                src="/images/logo-novas-estruturas.jpg"
+                alt="Logo Novas Estruturas"
+                fill
+                sizes="32px"
+                className="object-cover"
+              />
+            </span>
+            <span className="font-display text-sm font-semibold tracking-wide text-white">
+              NOVAS ESTRUTURAS
+            </span>
           </div>
+          <p className="mt-4 max-w-xs text-sm leading-relaxed text-text-secondary">
+            Engenharia e montagem de estruturas para eventos — coberturas,
+            palcos e soluções personalizadas.
+          </p>
         </div>
-        <div className="text-sm">
-          <div className="font-semibold mb-2 text-[var(--brand-yellow)]">Redes e contato</div>
-          <div className="flex flex-col gap-1 text-white/75">
-            <span>WhatsApp</span>
-            <span>Instagram</span>
-            <span>E-mail</span>
-            <span>Telefone</span>
-          </div>
+
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-text-secondary">
+            Navegação
+          </p>
+          <ul className="mt-4 space-y-2.5">
+            {SECTION_LINKS.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="focus-ring rounded-md text-sm text-text-secondary transition-colors hover:text-brand-light"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="font-mono text-[11px] uppercase tracking-wider text-text-secondary">
+            Contato &amp; redes
+          </p>
+          <ul className="mt-4 space-y-2.5">
+            <li className="text-sm text-text-secondary">
+              contato@novasestruturas.com.br
+            </li>
+            <li className="text-sm text-text-secondary">(81) 99999-0000</li>
+            {SOCIAL_LINKS.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="focus-ring rounded-md text-sm text-text-secondary transition-colors hover:text-brand-light"
+                >
+                  {social.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-      <div className="max-w-6xl mx-auto px-5 mt-6 text-xs text-white/55">
-        Novas Estruturas © {new Date().getFullYear()} — Todos os direitos reservados.
+
+      <div className="border-t border-border-soft">
+        <div className="section-container flex flex-col items-center justify-between gap-2 !py-6 text-xs text-text-secondary sm:flex-row">
+          <p>© {new Date().getFullYear()} Novas Estruturas. Todos os direitos reservados.</p>
+          <p>Estruturas que transformam eventos em experiências.</p>
+        </div>
       </div>
     </footer>
-  )
+  );
 }

@@ -1,56 +1,77 @@
-export const projects = [
+export type Project = {
+  id: string;
+  title: string;
+  category: string;
+  location: string;
+  description: string;
+  image: string;
+  span?: "wide" | "tall" | "normal";
+};
+
+export const projects: Project[] = [
   {
-    id: 'proj-01',
-    title: 'Palco para show ao ar livre',
-    image: '/images/2.jpg',
-    description: 'Estrutura metálica com cobertura e montagem técnica.'
+    id: "arco-monumental-recife",
+    title: "Arco Monumental à Beira-Mar",
+    category: "Estrutura para grande evento",
+    location: "Recife, PE",
+    description:
+      "Estrutura metálica circular de grande porte, com acabamento espelhado e iluminação cênica integrada, projetada para receber milhares de pessoas à beira da orla.",
+    image: "/images/projeto-aerea-skyline-recife.jpg",
+    span: "wide",
   },
   {
-    id: 'proj-02',
-    title: 'Cobertura para evento corporativo',
-    image: '/images/3.jpg',
-    description: 'Solução modular para fluxo de público e segurança.'
+    id: "cobertura-rooftop",
+    title: "Cobertura Técnica em Rooftop",
+    category: "Cobertura para eventos",
+    location: "Recife, PE",
+    description:
+      "Montagem de cobertura e piso técnico em laje suspensa, com estrutura preparada para suportar equipamentos de som, luz e público em pé.",
+    image: "/images/about-montagem-rooftop-dia.jpg",
   },
   {
-    id: 'proj-03',
-    title: 'Estrutura para feira e exposição',
-    image: '/images/4.jpg',
-    description: 'Montagem limpa e rápida para ambientes de negócios.'
+    id: "palco-led-barchef",
+    title: "Palco com Telão de LED",
+    category: "Palco para eventos",
+    location: "Casa noturna",
+    description:
+      "Estrutura de palco com painel de LED de alta resolução e treliças para iluminação, dimensionada para shows e apresentações ao vivo.",
+    image: "/images/projeto-barchef-palco-led.jpg",
   },
   {
-    id: 'proj-04',
-    title: 'Pórtico de entrada e recepção',
-    image: '/images/5.jpg',
-    description: 'Acabamento premium para experiência de chegada.'
+    id: "ambientacao-pista",
+    title: "Ambientação de Pista",
+    category: "Estruturas corporativas",
+    location: "Casa noturna",
+    description:
+      "Estruturas de sustentação para tecidos, iluminação cênica e efeitos visuais, criando atmosfera imersiva para o público.",
+    image: "/images/projeto-barchef-pista.jpg",
   },
   {
-    id: 'proj-05',
-    title: 'Estruturas para evento noturno',
-    image: '/images/6.jpg',
-    description: 'Projeto com reforço estrutural e iluminação integrada.'
+    id: "arco-noturno-close",
+    title: "Detalhe da Estrutura em Aço",
+    category: "Soluções personalizadas",
+    location: "Recife, PE",
+    description:
+      "Módulos em aço inox com iluminação em LED embutida, unindo resistência estrutural e impacto visual em uma peça escultural única.",
+    image: "/images/projeto-arco-close-azul-noite.jpg",
+    span: "tall",
   },
   {
-    id: 'proj-06',
-    title: 'Cobertura e apoio operacional',
-    image: '/images/7.png',
-    description: 'Área técnica para bastidores, produção e logística.'
+    id: "arco-publico-noite",
+    title: "Estrutura em Operação",
+    category: "Estrutura para grande evento",
+    location: "Recife, PE",
+    description:
+      "A estrutura em pleno funcionamento, recebendo o público durante o evento, com toda a engenharia validada em campo.",
+    image: "/images/projeto-arco-publico-azul.jpg",
   },
   {
-    id: 'proj-07',
-    title: 'Montagem para convenção',
-    image: '/images/8.jpg',
-    description: 'Estruturas para plenárias, circulação e credenciamento.'
+    id: "arco-identidade",
+    title: "Assinatura Novas Estruturas",
+    category: "Estrutura para grande evento",
+    location: "Recife, PE",
+    description:
+      "Projeto assinado Novas Estruturas: engenharia, montagem e operação de uma das estruturas mais fotografadas do evento.",
+    image: "/images/projeto-arco-branded-noite.jpg",
   },
-  {
-    id: 'proj-08',
-    title: 'Projeto especial customizado',
-    image: '/images/9.jpg',
-    description: 'Execução sob medida com foco em identidade visual.'
-  },
-  {
-    id: 'proj-09',
-    title: 'Estrutura completa para grande evento',
-    image: '/images/10.jpg',
-    description: 'Escopo integral: palco, cobertura e apoio.'
-  }
-]
+];

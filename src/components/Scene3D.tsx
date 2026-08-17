@@ -1,78 +1,93 @@
-'use client'
+"use client";
 
-import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, Sparkles } from '@react-three/drei'
-import { useEffect, useRef, useState } from 'react'
-import type { Group } from 'three'
+import { Suspense, useRef } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Environment, Float, Torus, TorusKnot } from "@react-three/drei";
+import * as THREE from "three";
 
-function RotatingStructure(){
-  const ref = useRef<Group | null>(null)
-  const [scrollProgress, setScrollProgress] = useState(0)
-
-  useEffect(() => {
-    const onScroll = () => {
-      const doc = document.documentElement
-      const max = doc.scrollHeight - doc.clientHeight
-      const ratio = max > 0 ? window.scrollY / max : 0
-      setScrollProgress(ratio)
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+function StructureRig({ scrollProgress }: { scrollProgress: number }) {
+  const group = useRef<THREE.Group>(null);
+  const ring = useRef<THREE.Mesh>(null);
 
   useFrame((state, delta) => {
-    if(ref.current){
-      const targetY = state.pointer.x * 0.3
-      const targetX = -state.pointer.y * 0.15 + scrollProgress * 0.25
-      // very gentle autonomous rotation
-      ref.current.rotation.y += delta * 0.08
-      ref.current.rotation.x += delta * 0.015
-      // subtle interaction smoothing
-      ref.current.rotation.y += (targetY - ref.current.rotation.y) * 0.02
-      ref.current.rotation.x += (targetX - ref.current.rotation.x) * 0.02
-      ref.current.position.y = scrollProgress * 0.18
+    if (!group.current) return;
+
+    // rotação suave contínua
+    group.current.rotation.y += delta * 0.18;
+
+    // resposta suave ao mouse (interpolada, sem movimento brusco)
+    const targetX = state.pointer.y * 0.25;
+    const targetZ = -state.pointer.x * 0.25;
+    group.current.rotation.x = THREE.MathUtils.lerp(
+      group.current.rotation.x,
+      targetX,
+      0.04
+    );
+    group.current.rotation.z = THREE.MathUtils.lerp(
+      group.current.rotation.z,
+      targetZ,
+      0.04
+    );
+
+    // leve deslocamento vertical com o scroll
+    group.current.position.y = THREE.MathUtils.lerp(
+      group.current.position.y,
+      -scrollProgress * 1.4,
+      0.08
+    );
+
+    if (ring.current) {
+      ring.current.rotation.z += delta * 0.05;
     }
-  })
+  });
 
   return (
-    <Float speed={0.6} rotationIntensity={0.12} floatIntensity={0.08}>
-      <group ref={ref} rotation={[0.15, 0, 0]}>
-        {/* primary structural ring (navy) */}
-        <mesh position={[0, 0, 0]}>
-          <torusGeometry args={[0.9, 0.06, 24, 120]} />
-          <meshStandardMaterial color="#14213D" metalness={0.7} roughness={0.35} />
-        </mesh>
+    <group ref={group}>
+      <Float speed={1.4} rotationIntensity={0.15} floatIntensity={0.6}>
+        <Torus ref={ring} args={[1.6, 0.11, 32, 96]} rotation={[0.3, 0, 0]}>
+          <meshStandardMaterial
+            color="#1b3358"
+            metalness={0.9}
+            roughness={0.18}
+            emissive="#12203a"
+            emissiveIntensity={0.4}
+          />
+        </Torus>
 
-        {/* accent beam (yellow) */}
-        <mesh position={[0, 0.5, 0]} rotation={[0.15, 0.2, 0]}> 
-          <boxGeometry args={[0.7, 0.16, 0.16]} />
-          <meshStandardMaterial color="#F5B700" emissive={'#F5B700'} emissiveIntensity={0.18} metalness={0.3} roughness={0.25} />
-        </mesh>
-
-        {/* small connector pieces */}
-        <mesh position={[0.45, -0.25, 0.1]}>
-          <cylinderGeometry args={[0.03, 0.03, 0.9, 12]} />
-          <meshStandardMaterial color="#10141F" metalness={0.6} roughness={0.4} />
-        </mesh>
-      </group>
-    </Float>
-  )
+        <TorusKnot
+          args={[0.62, 0.07, 128, 16, 2, 3]}
+          position={[0, -0.05, 0]}
+        >
+          <meshStandardMaterial
+            color="#3d6bb0"
+            metalness={0.85}
+            roughness={0.25}
+            emissive="#1b3358"
+            emissiveIntensity={0.35}
+          />
+        </TorusKnot>
+      </Float>
+    </group>
+  );
 }
 
-export default function Scene3D(){
+export default function Scene3D({ scrollProgress = 0 }: { scrollProgress?: number }) {
   return (
-    <Canvas camera={{ position: [0,0,4], fov: 50 }} style={{ width: '100%', height: '100%' }}>
-      {/* ambient with slight blue depth */}
-      <ambientLight intensity={0.35} color={'#14213D'} />
-      {/* warm primary key light in yellow */}
-      <directionalLight position={[3,3,2]} intensity={1.0} color={'#F5B700'} />
-      {/* subtle cool fill */}
-      <directionalLight position={[-3, -2, -2]} intensity={0.35} color={'#0A2340'} />
-      <RotatingStructure />
-      {/* small ambient particles — kept subtle so the piece reads as architecture, not a game */}
-      <Sparkles count={18} scale={2.6} size={1.4} speed={0.15} opacity={0.4} color={'#F5B700'} />
-      <Sparkles count={10} scale={3} size={1.1} speed={0.08} opacity={0.25} color={'#14213D'} />
+    <Canvas
+      camera={{ position: [0, 0, 4.6], fov: 42 }}
+      dpr={[1, 1.6]}
+      gl={{ alpha: true, antialias: true }}
+      style={{ background: "transparent" }}
+    >
+      <ambientLight intensity={0.35} />
+      <pointLight position={[3, 3, 4]} intensity={40} color="#4c7fc4" />
+      <pointLight position={[-3, -2, -3]} intensity={18} color="#3d6bb0" />
+      <directionalLight position={[0, 4, 5]} intensity={0.6} color="#ffffff" />
+
+      <Suspense fallback={null}>
+        <StructureRig scrollProgress={scrollProgress} />
+        <Environment preset="city" environmentIntensity={0.25} />
+      </Suspense>
     </Canvas>
-  )
+  );
 }
