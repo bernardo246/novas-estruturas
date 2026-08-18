@@ -69,12 +69,7 @@ export default function Navbar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="#contato"
-            className="focus-ring rounded-xl bg-brand px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-brand-hover"
-          >
-            Solicitar orçamento
-          </a>
+
         </div>
 
         <button
